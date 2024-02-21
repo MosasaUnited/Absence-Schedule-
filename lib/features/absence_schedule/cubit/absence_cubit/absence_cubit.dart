@@ -1,4 +1,4 @@
-import 'package:absence_schedule/common/models/section.dart';
+import 'package:absence_schedule/common/models/management.dart';
 import 'package:absence_schedule/features/absence_schedule/data/sections_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,24 +27,24 @@ class AbsenceCubit extends Cubit<AbsenceState> {
     controllers.clear();
     controllers.addAll(
       List.generate(
-        section.students.length,
+        section.employees.length,
         (index) => TextEditingController(
-          text: section.students[index].name,
+          text: section.employees[index].name,
         ),
       ),
     );
     emit(AbsenceSuccessState());
   }
 
-  changeStudentName({
+  changeEmployeeName({
     required String name,
-    required int studentIndex,
+    required int employeeIndex,
   }) {
     emit(AbsenceLoadingState());
-    section.students[studentIndex].changeName(name);
-    controllers[studentIndex].text = name;
+    section.employees[employeeIndex].changeName(name);
+    controllers[employeeIndex].text = name;
     _fixedDays();
-    _fixedStudents();
+    _fixedEmployee();
     SectionsBox.editSection(
       index: sectionIndex,
       section: section,
@@ -53,13 +53,13 @@ class AbsenceCubit extends Cubit<AbsenceState> {
   }
 
   changeDayState({
-    required int studentIndex,
+    required int employeeIndex,
     required int dayIndex,
   }) {
     emit(AbsenceLoadingState());
-    section.students[studentIndex].nextDayState(dayIndex);
+    section.employees[employeeIndex].nextDayState(dayIndex);
     _fixedDays();
-    _fixedStudents();
+    _fixedEmployee();
     SectionsBox.editSection(
       index: sectionIndex,
       section: section,
@@ -68,48 +68,48 @@ class AbsenceCubit extends Cubit<AbsenceState> {
   }
 
   _fixedDays() {
-    for (int day = 0; day < section.students.first.daysStates.length; day++) {
+    for (int day = 0; day < section.employees.first.daysStates.length; day++) {
       bool isEmpty = true;
-      for (var student in section.students) {
-        if (student.daysStates[day] != null) {
+      for (var employee in section.employees) {
+        if (employee.daysStates[day] != null) {
           isEmpty = false;
           break;
         }
       }
       if (isEmpty) {
-        if (day != section.students.first.daysStates.length - 1) {
-          for (int i = 0; i < section.students.length; i++) {
-            section.students[i].daysStates.removeAt(day);
+        if (day != section.employees.first.daysStates.length - 1) {
+          for (int i = 0; i < section.employees.length; i++) {
+            section.employees[i].daysStates.removeAt(day);
           }
         }
       } else {
-        if (day == section.students.first.daysStates.length - 1) {
-          for (int i = 0; i < section.students.length; i++) {
-            section.students[i].addNewDay();
+        if (day == section.employees.first.daysStates.length - 1) {
+          for (int i = 0; i < section.employees.length; i++) {
+            section.employees[i].addNewDay();
           }
         }
       }
     }
   }
 
-  _fixedStudents() {
-    for (int i = 0; i < section.students.length; i++) {
-      bool isEmpty = section.students[i].name.isEmpty;
-      for (var day in section.students[i].daysStates) {
+  _fixedEmployee() {
+    for (int i = 0; i < section.employees.length; i++) {
+      bool isEmpty = section.employees[i].name.isEmpty;
+      for (var day in section.employees[i].daysStates) {
         if (day != null) {
           isEmpty = false;
           break;
         }
       }
       if (isEmpty) {
-        if (i != section.students.length - 1) {
-          section.students.removeAt(i);
+        if (i != section.employees.length - 1) {
+          section.employees.removeAt(i);
           controllers.removeAt(i);
         }
       } else {
-        if (i == section.students.length - 1) {
-          section.addNewStudent(
-              initialDays: section.students.first.daysStates.length);
+        if (i == section.employees.length - 1) {
+          section.addNewEmployee(
+              initialDays: section.employees.first.daysStates.length);
           controllers.add(TextEditingController());
         }
       }

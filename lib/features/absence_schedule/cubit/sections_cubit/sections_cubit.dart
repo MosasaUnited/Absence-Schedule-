@@ -1,7 +1,8 @@
-import 'package:absence_schedule/common/models/section.dart';
+import 'package:absence_schedule/common/models/management.dart';
 import 'package:absence_schedule/features/absence_schedule/data/sections_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'sections_state.dart';
 
 class SectionsCubit extends Cubit<SectionsState> {

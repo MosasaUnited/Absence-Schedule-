@@ -1,5 +1,5 @@
-import 'package:absence_schedule/common/models/section.dart';
-import 'package:absence_schedule/common/models/student.dart';
+import 'package:absence_schedule/common/models/emoloyee.dart';
+import 'package:absence_schedule/common/models/management.dart';
 import 'package:absence_schedule/common/utils/dark_theme.dart';
 import 'package:absence_schedule/features/absence_schedule/cubit/absence_cubit/absence_cubit.dart';
 import 'package:absence_schedule/features/absence_schedule/cubit/sections_cubit/sections_cubit.dart';

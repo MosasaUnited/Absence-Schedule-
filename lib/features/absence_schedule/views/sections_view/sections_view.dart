@@ -1,4 +1,4 @@
-import 'package:absence_schedule/common/models/section.dart';
+import 'package:absence_schedule/common/models/management.dart';
 import 'package:absence_schedule/common/widgets/show_alert_dialog.dart';
 import 'package:absence_schedule/features/absence_schedule/cubit/sections_cubit/sections_cubit.dart';
 import 'package:absence_schedule/features/absence_schedule/cubit/sections_cubit/sections_state.dart';

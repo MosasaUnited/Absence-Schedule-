@@ -1,16 +1,16 @@
 import 'package:absence_schedule/common/constants/keys.dart';
 import 'package:hive/hive.dart';
 
-part 'student.g.dart';
+part 'employee.g.dart';
 
 @HiveType(typeId: 1)
-class Student {
+class Employee {
   @HiveField(0)
   late String name;
   @HiveField(1)
   late final List<bool?> daysStates;
 
-  Student({
+  Employee({
     String? name,
     List<bool?>? daysStates,
   }) {
@@ -18,8 +18,8 @@ class Student {
     this.daysStates = daysStates ?? List.generate(1, (index) => null);
   }
 
-  factory Student.fromJson(Map<String, dynamic> data) {
-    return Student(
+  factory Employee.fromJson(Map<String, dynamic> data) {
+    return Employee(
       name: data[Keys.name],
       daysStates: data[Keys.daysStates].cast<bool?>(),
     );

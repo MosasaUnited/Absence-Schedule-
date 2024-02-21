@@ -1,6 +1,7 @@
 import 'package:absence_schedule/features/absence_schedule/cubit/absence_cubit/absence_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../cubit/absence_cubit/absence_cubit.dart';
 import 'custom_table.dart';
 import 'custom_table_row.dart';
@@ -19,15 +20,15 @@ class AbsenceScheduleBody extends StatelessWidget {
         return CustomTable(
           children: [
             tableHeaderRow(
-                absenceCubit.section.students.first.daysStates.length),
-            ...absenceCubit.section.students.asMap().entries.map(
+                absenceCubit.section.employees.first.daysStates.length),
+            ...absenceCubit.section.employees.asMap().entries.map(
                   (entry) => customTableRow(
-                    studentIndex: entry.key,
-                    student: entry.value,
+                    employeeIndex: entry.key,
+                    employee: entry.value,
                     controller: absenceCubit.controllers[entry.key],
-                    onNameChange: (name) => absenceCubit.changeStudentName(
+                    onNameChange: (name) => absenceCubit.changeEmployeeName(
                       name: name,
-                      studentIndex: entry.key,
+                      employeeIndex: entry.key,
                     ),
                   ),
                 ),

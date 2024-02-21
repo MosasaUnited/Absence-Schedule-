@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'table_item.dart';
 
 tableHeaderRow(int length) {
@@ -8,7 +9,7 @@ tableHeaderRow(int length) {
       const TableItem(data: 'الاسم'),
       ...List.generate(
         length,
-        (index) => TableItem(data: '${index + 1}'),
+        (index) => TableItem(data: '$index'),
       ),
     ],
   );

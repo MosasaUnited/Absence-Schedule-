@@ -1,12 +1,12 @@
 import 'package:absence_schedule/common/constants/keys.dart';
-import 'package:absence_schedule/common/models/section.dart';
+import 'package:absence_schedule/common/models/management.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 abstract class SectionsBox {
   static late Box<Section> sectionsBox;
 
   static Future<void> openSectionsBox() async {
-    sectionsBox = await Hive.openBox<Section>(Keys.sections);
+    sectionsBox = await Hive.openBox<Section>(Keys.management);
   }
 
   // sections
@@ -43,14 +43,14 @@ abstract class SectionsBox {
   }
 
   // students
-  static void addStudent({
+  static void addEmployee({
     required int sectionIndex,
     required int initialDays,
   }) {
     // way one
     sectionsBox.values
         .toList()[sectionIndex]
-        .addNewStudent(initialDays: initialDays);
+        .addNewEmployee(initialDays: initialDays);
 
     // way two
     // Section currentSection = getSection(index: sectionIndex);
@@ -58,32 +58,32 @@ abstract class SectionsBox {
     // editSection(section: currentSection, index: sectionIndex);
   }
 
-  static void changeStudentName({
+  static void changeEmployeeName({
     required int sectionIndex,
-    required int studentIndex,
+    required int employeeIndex,
     required String name,
   }) {
     sectionsBox.values
         .toList()[sectionIndex]
-        .students[studentIndex]
+        .employees[employeeIndex]
         .changeName(name);
   }
 
   static void nextDayState({
     required int sectionIndex,
-    required int studentIndex,
+    required int employeeIndex,
     required int dayIndex,
   }) {
     sectionsBox.values
         .toList()[sectionIndex]
-        .students[studentIndex]
+        .employees[employeeIndex]
         .nextDayState(dayIndex);
   }
 
   static void deleteStudent({
     required int sectionIndex,
-    required int studentIndex,
+    required int employeeIndex,
   }) {
-    sectionsBox.values.toList()[sectionIndex].students.removeAt(studentIndex);
+    sectionsBox.values.toList()[sectionIndex].employees.removeAt(employeeIndex);
   }
 }

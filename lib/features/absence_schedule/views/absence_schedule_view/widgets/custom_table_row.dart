@@ -1,4 +1,4 @@
-import 'package:absence_schedule/common/models/student.dart';
+import 'package:absence_schedule/common/models/emoloyee.dart';
 import 'package:flutter/material.dart';
 
 import 'table_details_button.dart';
@@ -6,24 +6,24 @@ import 'table_item.dart';
 import 'table_name_item.dart';
 
 customTableRow({
-  required int studentIndex,
-  required Student student,
+  required int employeeIndex,
+  required Employee employee,
   required TextEditingController controller,
   required Function(String name) onNameChange,
 }) {
   return TableRow(
     children: [
-      TableItem(data: (studentIndex + 1).toString()),
+      TableItem(data: (employeeIndex + 1).toString()),
       TableNameItem(
-        name: student.name,
+        name: employee.name,
         onChange: onNameChange,
         controller: controller,
       ),
       ...List.generate(
-        student.daysStates.length,
+        employee.daysStates.length,
         (dayIndex) => TableDetailsButton(
           dayIndex: dayIndex,
-          studentIndex: studentIndex,
+          employeeIndex: employeeIndex,
         ),
       ),
     ],

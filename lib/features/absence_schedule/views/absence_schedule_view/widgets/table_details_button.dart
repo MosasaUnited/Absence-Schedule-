@@ -1,18 +1,18 @@
 import 'package:absence_schedule/features/absence_schedule/cubit/absence_cubit/absence_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubit/absence_cubit/absence_state.dart';
 
+import '../../../cubit/absence_cubit/absence_state.dart';
 
 class TableDetailsButton extends StatelessWidget {
   const TableDetailsButton({
     super.key,
     required this.dayIndex,
-    required this.studentIndex,
+    required this.employeeIndex,
   });
   final int dayIndex;
 
-  final int studentIndex;
+  final int employeeIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,11 @@ class TableDetailsButton extends StatelessWidget {
   }
 
   Widget _getIcon(AbsenceCubit absenceCubit) {
-    if (absenceCubit
-            .section.students[studentIndex].daysStates[dayIndex] ==
+    if (absenceCubit.section.employees[employeeIndex].daysStates[dayIndex] ==
         null) {
       return const Text('');
     }
-    if (absenceCubit
-            .section.students[studentIndex].daysStates[dayIndex] ==
+    if (absenceCubit.section.employees[employeeIndex].daysStates[dayIndex] ==
         true) {
       return const Icon(
         Icons.done,
@@ -50,7 +48,7 @@ class TableDetailsButton extends StatelessWidget {
   void _onPressed(AbsenceCubit absenceCubit) {
     absenceCubit.changeDayState(
       dayIndex: dayIndex,
-      studentIndex: studentIndex,
+      employeeIndex: employeeIndex,
     );
   }
 }

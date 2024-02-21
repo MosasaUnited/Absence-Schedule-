@@ -26,7 +26,7 @@ showAlertDialog(
                     Navigator.pop(context);
                   },
                   child: Text(
-                    acceptTitle ?? 'حفظ',
+                    acceptTitle ?? 'Save',
                     style: const TextStyle(
                       color: Colors.green,
                     ),
@@ -38,7 +38,7 @@ showAlertDialog(
                     Navigator.pop(context);
                   },
                   child: Text(
-                    denyTitle ?? 'الغاء',
+                    denyTitle ?? 'Cancel',
                     style: const TextStyle(
                       color: Colors.red,
                     ),
@@ -52,5 +52,3 @@ showAlertDialog(
     },
   );
 }
-
-

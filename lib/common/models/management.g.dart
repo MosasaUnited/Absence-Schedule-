@@ -1,35 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'student.dart';
+part of 'management.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class StudentAdapter extends TypeAdapter<Student> {
+class SectionAdapter extends TypeAdapter<Section> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
-  Student read(BinaryReader reader) {
+  Section read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Student(
-      name: fields[0] as String?,
-      daysStates: (fields[1] as List?)?.cast<bool?>(),
+    return Section(
+      title: fields[0] as String,
+      employees: (fields[1] as List?)?.cast<Employee>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, Student obj) {
+  void write(BinaryWriter writer, Section obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.title)
       ..writeByte(1)
-      ..write(obj.daysStates);
+      ..write(obj.employees);
   }
 
   @override
@@ -38,7 +38,7 @@ class StudentAdapter extends TypeAdapter<Student> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is StudentAdapter &&
+      other is SectionAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
